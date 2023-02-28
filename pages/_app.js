@@ -1,5 +1,13 @@
 import '@/styles/globals.css'
+import { NextProjectProvider } from '@/context/NextProjectContext'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    //whole app are able to access to provider
+  <NextProjectProvider>
+  <Component {...pageProps} />
+  </NextProjectProvider>
+  )
 }
+
+export default App
