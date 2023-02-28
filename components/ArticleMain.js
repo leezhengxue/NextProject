@@ -30,9 +30,9 @@ const styles = {
 
 }
 
-const ArticleMain = () => {
+const ArticleMain = ({post, author}) => {
+    console.log(post,author, 'details')
     return(
- 
         <div className={styles.wrapper}>
             <div className={styles.content}>
                 <div className={styles.postHeaderContainer}>
@@ -46,9 +46,11 @@ const ArticleMain = () => {
                             />
                         </div>
                         <div className={styles.column}>
-                            <div>Fear of GOD</div>
+                            <div>{author?.data?.name}</div>
                             <div className={styles.postDetails}>
-                                <span>June 15 • 7min read •</span>
+                                <span>{new Date(post.data?.postedOn).toLocaleString(
+                                'en-us',{day:'numeric', month:'short'}
+                                )} • {post.data?.postLength} min read •</span>
                                     <span className={styles.listenButton}>
                                         <AiFillPlayCircle /> Listen
                                     </span>
@@ -75,18 +77,21 @@ const ArticleMain = () => {
                         />
                     </div>
                     <h1 className={styles.title}>
-                    API in Nextjs with Firebase
+                    {post?.data?.title}
                     </h1>
                     <h4 className={styles.subtitle}>
                         <div>
-                            Fear Of GOD, June 15 ,2022
+                            {author?.data?.name}, {' '}
+                             {new Date(post.data?.postedOn).toLocaleString(
+                                'en-us',{day:'numeric', month:'short', year: 'numeric'}
+                                )}
                         </div>
                         <div>
-                            Brief: Learining how to code.
+                            {post?.data?.brief}
                         </div>
                     </h4>
                     <div className={styles.articleText}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    {post?.data?.body}
                     </div>
                 </div>
             </div>
